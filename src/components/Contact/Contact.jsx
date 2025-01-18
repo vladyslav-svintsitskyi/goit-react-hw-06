@@ -2,8 +2,11 @@ import React from "react";
 import s from "./Contact.module.css";
 import { ImUser } from "react-icons/im";
 import { ImPhone } from "react-icons/im";
+import { useDispatch } from "react-redux";
+import { deleteContact } from "../../redux/contactsSlice";
 
-const Contact = ({ data: { id, name, number }, onDelete }) => {
+const Contact = ({ data: { id, name, number } }) => {
+  const dispatch = useDispatch();
   return (
     <div className={s.wrapper}>
       <div className={s.info}>
@@ -16,7 +19,8 @@ const Contact = ({ data: { id, name, number }, onDelete }) => {
           <span className={s.infoText}>{number}</span>
         </p>
       </div>
-      <button className={s.button} onClick={() => onDelete(id)}>
+
+      <button className={s.button} onClick={() => dispatch(deleteContact(id))}>
         Delete
       </button>
     </div>
